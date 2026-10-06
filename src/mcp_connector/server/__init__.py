@@ -152,6 +152,55 @@ def bundle_names() -> list[str]:
     )
 
 
+def _strip_schema_titles(schema: dict[str, Any]) -> None:
+    """Remove pydantic's derived ``title`` keys from one JSON schema, in place.
+
+    Every generated ``title`` is a spelling variant of the parameter name next to it
+    ("upload_id" carries ``"title": "Upload Id"``), so a model learns nothing from it while
+    every client pays for it in every session: measured on 2026-10-06 the keys cost 2516
+    bytes of the 17763-byte surface (see the budget history in
+    ``scripts/check_tool_budget.py``, which named this cut long before it was taken).
+
+    The walk recurses only through schema positions. The keys of a ``properties`` object
+    are parameter names, not keywords, so a *parameter* called ``title`` (deck_create_card,
+    notes_create) keeps its name and loses only the derived annotation inside its own
+    sub-schema.
+    """
+    if isinstance(schema.get("title"), str):
+        del schema["title"]
+    for key in ("properties", "$defs"):
+        named = schema.get(key)
+        if isinstance(named, dict):
+            for sub in named.values():
+                if isinstance(sub, dict):
+                    _strip_schema_titles(sub)
+    for key in ("items", "additionalProperties", "not"):
+        sub = schema.get(key)
+        if isinstance(sub, dict):
+            _strip_schema_titles(sub)
+    for key in ("anyOf", "oneOf", "allOf", "prefixItems"):
+        subs = schema.get(key)
+        if isinstance(subs, list):
+            for sub in subs:
+                if isinstance(sub, dict):
+                    _strip_schema_titles(sub)
+
+
+def _diet_tool_schemas() -> None:
+    """Strip the derived titles from every registered tool, input and output schema alike.
+
+    One pass after registration instead of a hook inside every ``@mcp.tool`` call: the
+    surface is only complete once ``_load_registrations`` returns, and a single place is
+    one place for the contract test to hold accountable. ``_tool_manager`` is SDK-private,
+    which the test accepts as the cost of not reimplementing schema generation; if an SDK
+    upgrade renames it, this line fails loudly at import, not silently at list time.
+    """
+    for tool in mcp._tool_manager.list_tools():
+        _strip_schema_titles(tool.parameters)
+        if tool.output_schema is not None:
+            _strip_schema_titles(tool.output_schema)
+
+
 def _load_registrations() -> None:
     """Import every ``reg_*`` module so its tools register themselves.
 
@@ -172,3 +221,4 @@ def _load_registrations() -> None:
 
 
 _load_registrations()
+_diet_tool_schemas()

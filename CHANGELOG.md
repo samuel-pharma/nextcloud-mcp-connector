@@ -11,6 +11,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- The tool schemas no longer carry the `title` keys pydantic derives from every parameter
+  name. They spelled each name a second time ("upload_id" carried `"title": "Upload Id"`),
+  so no client loses information, and `tools/list` shrinks from 17763 to 15440 bytes, paid
+  by every client in every session.
+
 ## [0.5.0] - 2026-10-05
 
 ### Added

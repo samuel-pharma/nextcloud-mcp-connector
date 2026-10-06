@@ -15,6 +15,7 @@ named in one place.
 """
 
 import importlib.util
+import json
 import re
 import sys
 from collections.abc import Iterator
@@ -602,6 +603,40 @@ async def test_the_byte_gate_counts_exactly_as_many_tools_as_this_file_freezes()
         "the surface is over its byte budget or one tool is over the per tool ceiling; "
         "the gate prints which one"
     )
+
+
+@pytest.mark.anyio
+async def test_no_tool_schema_carries_a_derived_title_key() -> None:
+    """The title diet of 2026-10-06 stays taken: no schema sells a parameter name twice.
+
+    Pydantic derives a ``title`` for every model and property ("upload_id" grows
+    ``"title": "Upload Id"``), ~2.3 kB across the surface that no model can act on. The
+    check here is deliberately not the recursion that does the stripping: a string-valued
+    ``title`` anywhere in the serialised schema fails, however deeply pydantic nested it,
+    so a stripper that misses a new schema keyword is caught instead of mirrored. The two
+    tools whose *parameter* is named ``title`` are asserted to keep it: the diet removes
+    the annotation, never the argument.
+    """
+    async with Client(mcp, raise_exceptions=True) as client:
+        result = await client.list_tools()
+
+    payload = result.model_dump(by_alias=True, exclude_none=True, mode="json")
+    derived = re.compile(r'"title":"')
+    for tool in payload["tools"]:
+        for schema_key in ("inputSchema", "outputSchema"):
+            schema = tool.get(schema_key)
+            if schema is None:
+                continue
+            blob = json.dumps(schema, separators=(",", ":"), ensure_ascii=False)
+            assert not derived.search(blob), (
+                f"{tool['name']}.{schema_key} still carries a derived title key"
+            )
+
+    by_name = {tool["name"]: tool for tool in payload["tools"]}
+    for name in ("deck_create_card", "notes_create"):
+        assert "title" in by_name[name]["inputSchema"]["properties"], (
+            f"{name} lost its title *parameter*; the diet may only remove annotations"
+        )
 
 
 @pytest.mark.anyio

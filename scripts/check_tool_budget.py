@@ -89,6 +89,18 @@ from mcp_connector.server import mcp
 #   Measurement 2026-09-30, all 23 curated tools registered (files_read_as_markdown of
 #               TOOL-14): 17763 bytes
 #   Budget      unchanged at 18000, because the measurement fits below it
+#
+#   Measurement 2026-10-06, same 23 tools after the title diet: 15440 bytes. This is the
+#               untaken cut the 2026-08-24 paragraph names: pydantic's derived ``title``
+#               keys, 2323 bytes of parameter names spelled a second time. It was taken now
+#               because PR #17 wants to add a ``file`` parameter to ``files_upload``, and
+#               with the existing descriptions intact that tool measured 1586 bytes against
+#               the 1400 ceiling; the diet brings it to ~1393 with every description kept.
+#               The stripping lives in ``server/__init__.py`` (``_diet_tool_schemas``) and
+#               the contract test ``test_no_tool_schema_carries_a_derived_title_key`` keeps
+#               it taken.
+#   Budget      unchanged at 18000: 15440 + 15 percent = 17756, and the next 500 above it
+#               is 18000, so the convention lands on the number that already stands.
 BUDGET_BYTES = 18_000
 
 # The second claim, and the one that actually reports a regression. A total with headroom
