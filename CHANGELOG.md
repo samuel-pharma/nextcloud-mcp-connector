@@ -11,6 +11,23 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- SECURITY.md with the two private reporting channels, CONTRIBUTING.md, issue
+  and pull request templates, and THIRD-PARTY.md with the licences of the
+  shipped dependencies.
+- CI security scans: CodeQL over the source and pip-audit over the locked
+  dependency set, weekly on top of every push.
+- Dependabot for the three dependency surfaces (actions, docker, uv).
+
+### Changed
+
+- Every workflow action is pinned to a commit SHA instead of a tag.
+- `info.xml` declares the licence as `AGPL-3.0-or-later`, the same spelling
+  as `pyproject.toml` and the repository licence file.
+- Dependency lift after a pip-audit pass: httpx2 2.13.1 (PYSEC-2026-3846,
+  -3848, -3849) and PyJWT 2.15.1 (PYSEC-2026-4141, -4183).
+
 ## [0.5.1] - 2026-10-08
 
 ### Changed

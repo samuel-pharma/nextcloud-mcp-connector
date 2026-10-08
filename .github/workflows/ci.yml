@@ -9,6 +9,11 @@ on:
     branches: [main]
   pull_request:
 
+# Nothing in CI writes to the repository, so nothing in CI may hold a token
+# that could: the default token of every job is read-only.
+permissions:
+  contents: read
+
 jobs:
   unit:
     runs-on: ubuntu-latest

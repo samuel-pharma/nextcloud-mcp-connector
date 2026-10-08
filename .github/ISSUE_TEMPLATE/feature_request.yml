@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a new tool or capability
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The tool surface is curated: every tool costs schema budget on the
+        client side and maintenance on this side, so the problem matters more
+        than the proposed shape.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What do you want an assistant to be able to do with your Nextcloud, and why
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed shape
+      description: If you already have a tool or parameter shape in mind, sketch it here
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you do today instead

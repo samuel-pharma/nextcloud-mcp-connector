@@ -1,0 +1,44 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. For a security problem, please use
+        "Report a vulnerability" under the Security tab instead of this form.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you do, what did you expect, what happened instead
+    validations:
+      required: true
+  - type: input
+    id: connector-version
+    attributes:
+      label: Connector version
+      placeholder: "0.5.1"
+    validations:
+      required: true
+  - type: input
+    id: nextcloud-version
+    attributes:
+      label: Nextcloud version
+      placeholder: "35.0.0"
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: MCP client and transport
+      description: Which assistant or client, and whether it connects over HTTP or stdio
+      placeholder: "Claude.ai over Streamable HTTP"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant lines from the connector container or the Nextcloud log, with secrets removed
+      render: text
