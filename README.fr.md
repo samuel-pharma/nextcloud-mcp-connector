@@ -4,6 +4,11 @@
 
 # MCP Connector pour Nextcloud
 
+[![CI](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml)
+[![Security scans](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml)
+[![Nextcloud App Store](https://img.shields.io/badge/App_Store-mcp__connector-0082c9)](https://apps.nextcloud.com/apps/mcp_connector)
+[![Licence](https://img.shields.io/badge/Licence-AGPL--3.0--or--later-blue)](LICENSE)
+
 Un serveur MCP soigneusement sélectionné qui relie votre Nextcloud (fichiers, agenda, notes,
 Deck, contacts, Tables, Talk et Mail) à des assistants IA tels que Claude, Cursor, ChatGPT ou
 vos propres agents. Installé comme ExApp Nextcloud, il est en même temps son propre serveur
@@ -109,6 +114,16 @@ Un dossier ou un fichier portant l'étiquette collaborative `kein-ki` devient in
 Vérifier avec `php occ mcp_connector:exclusion:check --admin=<uid>`.
 Limite principale : une étiquette au-dessus de la racine d'un partage ne protège pas le dossier partagé chez le destinataire, étiquetez donc le dossier que vous partagez.
 Mise en place, toutes les limites et leurs constats : [docs/exclusion.fr.md](docs/exclusion.fr.md).
+
+## Architecture
+
+Un conteneur, une application : le connecteur est une ExApp Nextcloud bâtie
+sur FastAPI et le SDK MCP officiel, Streamable HTTP et stdio depuis le même
+serveur, et il est son propre serveur d'autorisation OAuth 2.1 avec un pont
+vers la connexion Nextcloud. Chaque appel d'outil est une requête HTTP vers
+les APIs propres de Nextcloud (WebDAV, CalDAV, CardDAV, OCS et les APIs REST
+des applications) au nom de l'utilisateur connecté ; les droits s'appliquent
+inchangés, rien n'est indexé ni copié.
 
 ## Sécurité
 

@@ -2,6 +2,11 @@
 
 # MCP Connector for Nextcloud
 
+[![CI](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml)
+[![Security scans](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml)
+[![Nextcloud App Store](https://img.shields.io/badge/App_Store-mcp__connector-0082c9)](https://apps.nextcloud.com/apps/mcp_connector)
+[![Licence](https://img.shields.io/badge/Licence-AGPL--3.0--or--later-blue)](LICENSE)
+
 A curated MCP server that connects your Nextcloud (files, calendar, notes, Deck, contacts,
 Tables, Talk and Mail) to AI assistants such as Claude, Cursor, ChatGPT or your own agents.
 Installed as a Nextcloud ExApp, it is its own OAuth 2.1 authorization server as well.
@@ -129,6 +134,15 @@ Tag a folder or file with the collaborative tag `kein-ki` and the assistant no l
 Check the setup with `php occ mcp_connector:exclusion:check --admin=<uid>`.
 Most important limit: a tag above the root of a share does not protect the shared folder for the recipient, so tag the folder you share.
 Setup, all limits and the findings they rest on: [docs/exclusion.md](docs/exclusion.md).
+
+## Architecture
+
+One container, one app: the connector is a Nextcloud ExApp built on FastAPI
+and the official MCP SDK, serving Streamable HTTP and stdio from the same
+server, and it is its own OAuth 2.1 authorization server bridging into the
+Nextcloud login. Every tool call is an HTTP request against Nextcloud's own
+APIs (WebDAV, CalDAV, CardDAV, OCS and app REST APIs) made as the signed-in
+user, so permissions apply unchanged, and nothing is indexed or copied.
 
 ## Security
 

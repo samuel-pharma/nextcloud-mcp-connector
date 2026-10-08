@@ -11,6 +11,10 @@ hard quality gates; small, focused pull requests get reviewed fastest.
   the repository root and the `tests/integration` fixtures show the expected
   topology
 
+`.planning/` is the project's own working log (plans, audits, decisions) and
+is checked in on purpose: every release decision is traceable there. Nothing
+in it ships, and pull requests never need to touch it.
+
 ## The gates
 
 Green locally before you push; CI runs the same set plus integration against
