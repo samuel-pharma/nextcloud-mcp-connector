@@ -11,12 +11,23 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-10-08
+
 ### Changed
 
 - The tool schemas no longer carry the `title` keys pydantic derives from every parameter
   name. They spelled each name a second time ("upload_id" carried `"title": "Upload Id"`),
   so no client loses information, and `tools/list` shrinks from 17763 to 15440 bytes, paid
   by every client in every session.
+
+### Fixed
+
+- The App Store shows the current screenshots again. The store mirror keeps the first
+  version it ever fetched of a URL and never refetches, so the overview image of the
+  first submission was served forever, and browsers that saw the mirror outage of
+  early October cached empty bodies until 2038. Both files were renamed
+  (`connections-v2.png`, `connections-page-v2.png`) and the manifest points there,
+  which gives the mirror fresh entries and every browser an uncached URL.
 
 ## [0.5.0] - 2026-10-05
 
@@ -914,7 +925,8 @@ First release, submitted to the Nextcloud App Store.
   never sees more than that user sees in the web interface.
 - A privacy and data flow description, see [docs/privacy.md](docs/privacy.md).
 
-[Unreleased]: https://github.com/street1983nk/nextcloud-mcp-connector/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/street1983nk/nextcloud-mcp-connector/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/street1983nk/nextcloud-mcp-connector/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/street1983nk/nextcloud-mcp-connector/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/street1983nk/nextcloud-mcp-connector/compare/v0.3.2...v0.4.0
 [0.3.2]: https://github.com/street1983nk/nextcloud-mcp-connector/compare/v0.3.1...v0.3.2

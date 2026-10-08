@@ -168,7 +168,7 @@ d'environnement et les trois erreurs qui surviennent vraiment :
 [docs/oauth-setup.md](docs/oauth-setup.md). Les plateformes d'automatisation sont aussi des
 clients, avec une connexion OAuth par personne : [docs/n8n-setup.md](docs/n8n-setup.md).
 
-![Page des connexions avec deux assistants connectés](docs/screenshots/connections-page.png)
+![Page des connexions avec deux assistants connectés](docs/screenshots/connections-page-v2.png)
 
 ## Confidentialité
 

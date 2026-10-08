@@ -162,7 +162,7 @@ Umgebungsvariable und die drei Fehler, die wirklich vorkommen:
 [docs/oauth-setup.md](docs/oauth-setup.md). Automatisierungsplattformen sind auch Clients,
 mit einer OAuth-Verbindung je Person: [docs/n8n-setup.md](docs/n8n-setup.md).
 
-![Verbindungsseite mit zwei verbundenen Assistenten](docs/screenshots/connections-page.png)
+![Verbindungsseite mit zwei verbundenen Assistenten](docs/screenshots/connections-page-v2.png)
 
 ## Datenschutz
 
