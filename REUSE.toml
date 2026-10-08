@@ -1,0 +1,14 @@
+# Licensing information in REUSE 3.2 form (reuse.software), as bulk
+# annotations rather than per-file headers. Everything in this repository is
+# own work under the repository licence; the licences of what the image ships
+# are in THIRD-PARTY.md.
+version = 1
+SPDX-PackageName = "Nextcloud MCP Connector"
+SPDX-PackageSupplier = "street1983nk <admin@infranode.dev>"
+SPDX-PackageDownloadLocation = "https://github.com/street1983nk/nextcloud-mcp-connector"
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 street1983nk"
+SPDX-License-Identifier = "AGPL-3.0-or-later"

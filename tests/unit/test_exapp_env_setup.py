@@ -678,7 +678,9 @@ def test_the_build_context_excludes_the_history_and_any_env_file() -> None:
 def test_the_start_script_is_the_upstream_one_with_its_origin_named() -> None:
     """It is copied verbatim from HaRP on purpose, so the header has to say so."""
     text = START.read_text(encoding="utf-8")
+    # REUSE-IgnoreStart: the asserted string is quoted test data, not a tag.
     assert "SPDX-License-Identifier: AGPL-3.0-or-later" in text
+    # REUSE-IgnoreEnd
     assert "nextcloud/HaRP" in text
     assert "exapps_dev/start.sh" in text
     assert 'exec "$@"' in text, "without the exec the container would not run the app"
