@@ -109,11 +109,21 @@ extraPaths = ["tests/integration", "tests/unit", "tests/contract"]
 # because the project is installed into the environment.
 known-first-party = ["mcp_connector"]
 
+# The unit and contract suites covered 95 per cent of src/mcp_connector when
+# the floor was introduced (2026-10-08); 93 leaves room for refactors and
+# still catches a feature that arrives without its tests. Integration tests
+# add coverage on top but need a live Nextcloud, so the floor is measured
+# where every contributor can run it.
+[tool.coverage.report]
+fail_under = 93
+skip_covered = true
+
 [dependency-groups]
 dev = [
     "lxml-stubs>=0.5.1",
     "pyright>=1.1.411",
     "pytest>=9.1.1",
+    "pytest-cov>=7.0",
     "respx>=0.23.1",
     "ruff>=0.16.3",
     "vulture>=2.16",
