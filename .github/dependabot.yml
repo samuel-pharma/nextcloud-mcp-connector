@@ -1,0 +1,73 @@
+# Update automation for the three dependency surfaces of this repository,
+# after the model of the sibling repository (nextcloud-search): actions are
+# pinned by commit SHA, Python packages exactly in uv.lock, and this file is
+# the update path that keeps the pins from aging into known CVEs.
+#
+# Weekly, grouped by minor and patch, so a normal week is one pull request per
+# ecosystem instead of several. Major updates arrive as separate pull requests
+# on purpose: they need a human to read a changelog.
+version: 2
+
+updates:
+  # Workflows. Every uses: names a commit SHA, never a tag, because a moved
+  # tag is arbitrary code execution inside a job that holds a registry token.
+  # Dependabot rewrites the SHA and the trailing version comment together.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(ci)"
+    groups:
+      actions-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  # The container image: python:3.13-slim in both stages of the Dockerfile.
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(docker)"
+    groups:
+      image-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  # Python. The uv ecosystem understands pyproject.toml together with uv.lock,
+  # which is what --frozen resolves against in every gate; the pip ecosystem
+  # would read the pyproject and leave the lock file untouched, so the lock
+  # and the declaration would drift apart.
+  - package-ecosystem: uv
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    groups:
+      python-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
