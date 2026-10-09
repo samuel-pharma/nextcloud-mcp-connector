@@ -28,13 +28,19 @@ on:
         type: boolean
         default: true
 
+# Read-only at the top; the two write rights sit at the one job that uses
+# them, so a job added later starts with nothing.
 permissions:
-  contents: write
-  packages: write
+  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      # contents for gh-release, packages for the ghcr push; nothing else
+      # in this workflow writes.
+      contents: write
+      packages: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
