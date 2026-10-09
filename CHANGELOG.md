@@ -31,9 +31,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   family (a file name, a calendar summary, a mail subject and preview, a
   chat message), each held to arrive character for character as data in
   its content field and to leak into no other field of the answer.
+- Every GitHub release from 0.3.1 on carries a `.sig` asset next to its
+  archive: the same sha512 signature the store receives, verifiable
+  against the published app certificate.
 
 ### Changed
 
+- The base image of both Dockerfile stages is pinned by its multi-arch
+  digest instead of the moving `3.13-slim` tag; dependabot's docker pass
+  moves the digest deliberately.
+- `main` is protected against force pushes and deletion by a repository
+  ruleset.
 - Every workflow action is pinned to a commit SHA instead of a tag.
 - `info.xml` declares the licence as `AGPL-3.0-or-later`, the same spelling
   as `pyproject.toml` and the repository licence file.

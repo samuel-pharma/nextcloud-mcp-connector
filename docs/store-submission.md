@@ -309,6 +309,16 @@ on, and step 4 is irreversible in public.
    openssl dgst -sha512 -sign ~/.nextcloud/certificates/mcp_connector.key \
      mcp_connector-<version>.tar.gz | openssl base64 -A
    ```
+   In the same breath, write the signature as a file and attach it to the GitHub
+   release, next to the archive it signs. It is the same signature the store
+   receives, made verifiable for everyone else too (and it is what keeps the
+   Signed-Releases check of the Scorecard fed; 2026-10-09 backfilled it for
+   0.3.1 through 0.5.1):
+   ```
+   openssl dgst -sha512 -sign ~/.nextcloud/certificates/mcp_connector.key \
+     -out mcp_connector-<version>.tar.gz.sig mcp_connector-<version>.tar.gz
+   gh release upload v<version> mcp_connector-<version>.tar.gz.sig
+   ```
 7. **Send the download URL and the signature to the store.** Either the form at
    `https://apps.nextcloud.com/developer/apps/releases/new`, or the API with the token
    from the account page (`https://apps.nextcloud.com/account/token`):

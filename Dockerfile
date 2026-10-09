@@ -13,7 +13,11 @@
 # --------------------------------------------------------------------------------------
 # Build stage: resolve the locked dependency set
 # --------------------------------------------------------------------------------------
-FROM python:3.13-slim AS build
+# Pinned by digest for the same reason the uv line below pins a release: the tag
+# 3.13-slim moves, the digest does not, and dependabot's docker pass moves the digest
+# deliberately instead of a rebuild moving it silently. The digest is the multi-arch
+# index, so amd64 and arm64 both resolve under it.
+FROM python:3.13-slim@sha256:bf44cdfcb76cd3b41e879bc058fc37ec5872002ccfde7fcb765e218cde0cd79c AS build
 
 # A pinned uv release from the official image instead of a curl-pipe-shell installer: the
 # image tag is what resolves the dependency set, and a moving "latest" would make the
@@ -38,7 +42,9 @@ RUN uv sync --frozen --no-dev --no-editable --extra documents
 # --------------------------------------------------------------------------------------
 # Runtime stage
 # --------------------------------------------------------------------------------------
-FROM python:3.13-slim AS runtime
+# Same digest as the build stage, and it has to stay the same value: two stages on two
+# different base snapshots would ship a runtime libc the build never saw.
+FROM python:3.13-slim@sha256:bf44cdfcb76cd3b41e879bc058fc37ec5872002ccfde7fcb765e218cde0cd79c AS runtime
 
 # Provenance in the image itself, so a later security response does not have to guess
 # where this thing came from (T-02-26). A cosign signature belongs to the store
