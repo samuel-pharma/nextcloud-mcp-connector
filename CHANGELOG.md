@@ -27,6 +27,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - docs/threat-model.md: assets, trust boundaries, attackers, every threat
   with the contract test or switch that holds its mitigation, and the
   residual risks in plain sentences.
+- An injection corpus in the test suite: one poisoned value per content
+  family (a file name, a calendar summary, a mail subject and preview, a
+  chat message), each held to arrive character for character as data in
+  its content field and to leak into no other field of the answer.
 
 ### Changed
 
