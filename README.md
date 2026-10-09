@@ -4,6 +4,7 @@
 
 [![CI](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml)
 [![Security scans](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/street1983nk/nextcloud-mcp-connector/badge)](https://scorecard.dev/viewer/?uri=github.com/street1983nk/nextcloud-mcp-connector)
 [![Nextcloud App Store](https://img.shields.io/badge/App_Store-mcp__connector-0082c9)](https://apps.nextcloud.com/apps/mcp_connector)
 [![Licence](https://img.shields.io/badge/Licence-AGPL--3.0--or--later-blue)](LICENSE)
 
@@ -154,7 +155,9 @@ language model does not reliably separate data from instructions. So `talk_send`
 the administration switch `NC_MCP_TALK_SEND`, which closes the outgoing channel for the whole
 instance while reading stays untouched, and Mail adds reach with deliberately no way out of its
 own. Neither makes prompt injection impossible. The long form, with every countermeasure and
-the honest remainder, is in [docs/privacy.md](docs/privacy.md). The switches sit under
+the honest remainder, is in [docs/privacy.md](docs/privacy.md). Every boundary this server
+offers on one page, in the order to apply them on confidential data:
+[docs/hardening.md](docs/hardening.md). The switches sit under
 Settings, Administration, Security:
 
 ![Admin settings of the MCP Connector](docs/screenshots/admin-settings.png)

@@ -6,6 +6,7 @@
 
 [![CI](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml)
 [![Security scans](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/street1983nk/nextcloud-mcp-connector/badge)](https://scorecard.dev/viewer/?uri=github.com/street1983nk/nextcloud-mcp-connector)
 [![Nextcloud App Store](https://img.shields.io/badge/App_Store-mcp__connector-0082c9)](https://apps.nextcloud.com/apps/mcp_connector)
 [![Licence](https://img.shields.io/badge/Licence-AGPL--3.0--or--later-blue)](LICENSE)
 
@@ -137,7 +138,9 @@ se trouve derrière l'interrupteur d'administration `NC_MCP_TALK_SEND`, qui ferm
 pour toute l'instance tandis que la lecture reste intacte, et Mail ajoute de la portée sans
 sortie propre, délibérément. Aucune des deux ne rend l'injection de prompt impossible. La
 version longue, avec chaque contre-mesure et le reste honnête, se trouve dans
-[docs/privacy.md](docs/privacy.md). Les interrupteurs se trouvent sous Paramètres,
+[docs/privacy.md](docs/privacy.md). Chaque limite de ce serveur sur une seule page, dans
+l'ordre à appliquer sur des données confidentielles :
+[docs/hardening.fr.md](docs/hardening.fr.md). Les interrupteurs se trouvent sous Paramètres,
 Administration, Sécurité :
 
 ![Paramètres d'administration du MCP Connector](docs/screenshots/admin-settings.png)

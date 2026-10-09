@@ -19,6 +19,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - CI security scans: CodeQL over the source and pip-audit over the locked
   dependency set, weekly on top of every push.
 - Dependabot for the three dependency surfaces (actions, docker, uv).
+- docs/hardening.md (with German and French editions): every boundary this
+  server offers on one page, in the order to apply them on confidential
+  data, closing with a break-in drill to run before production.
+- A weekly OpenSSF Scorecard run that publishes its result; the README
+  carries the badge.
 
 ### Changed
 

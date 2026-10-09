@@ -6,6 +6,7 @@
 
 [![CI](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/ci.yml)
 [![Security scans](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml/badge.svg)](https://github.com/street1983nk/nextcloud-mcp-connector/actions/workflows/security.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/street1983nk/nextcloud-mcp-connector/badge)](https://scorecard.dev/viewer/?uri=github.com/street1983nk/nextcloud-mcp-connector)
 [![Nextcloud App Store](https://img.shields.io/badge/App_Store-mcp__connector-0082c9)](https://apps.nextcloud.com/apps/mcp_connector)
 [![Lizenz](https://img.shields.io/badge/Lizenz-AGPL--3.0--or--later-blue)](LICENSE)
 
@@ -132,7 +133,9 @@ Sprachmodell trennt Daten nicht zuverlässig von Anweisungen. Deshalb sitzt `tal
 dem Administrationsschalter `NC_MCP_TALK_SEND`, der den Ausgangskanal für die ganze Instanz
 schließt, während das Lesen unberührt bleibt, und Mail bringt Reichweite mit, bewusst ohne
 eigenen Ausgang. Beides macht Prompt Injection nicht unmöglich. Die lange Fassung, mit jeder
-Gegenmaßnahme und dem ehrlichen Rest, steht in [docs/privacy.md](docs/privacy.md). Die
+Gegenmaßnahme und dem ehrlichen Rest, steht in [docs/privacy.md](docs/privacy.md). Jede
+Grenze dieses Servers auf einer Seite, in der Reihenfolge für den Betrieb auf vertraulichen
+Daten: [docs/hardening.de.md](docs/hardening.de.md). Die
 Schalter liegen unter Einstellungen, Administration, Sicherheit:
 
 ![Admin-Einstellungen des MCP Connectors](docs/screenshots/admin-settings.png)
