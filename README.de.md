@@ -135,7 +135,9 @@ schließt, während das Lesen unberührt bleibt, und Mail bringt Reichweite mit,
 eigenen Ausgang. Beides macht Prompt Injection nicht unmöglich. Die lange Fassung, mit jeder
 Gegenmaßnahme und dem ehrlichen Rest, steht in [docs/privacy.md](docs/privacy.md). Jede
 Grenze dieses Servers auf einer Seite, in der Reihenfolge für den Betrieb auf vertraulichen
-Daten: [docs/hardening.de.md](docs/hardening.de.md). Die
+Daten: [docs/hardening.de.md](docs/hardening.de.md). Die systematische Fassung, Assets,
+Angreifer und jede Bedrohung mit dem Test, der die Gegenmaßnahme hält:
+[docs/threat-model.md](docs/threat-model.md) (englisch). Die
 Schalter liegen unter Einstellungen, Administration, Sicherheit:
 
 ![Admin-Einstellungen des MCP Connectors](docs/screenshots/admin-settings.png)

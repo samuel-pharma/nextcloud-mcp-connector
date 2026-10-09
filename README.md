@@ -157,8 +157,9 @@ instance while reading stays untouched, and Mail adds reach with deliberately no
 own. Neither makes prompt injection impossible. The long form, with every countermeasure and
 the honest remainder, is in [docs/privacy.md](docs/privacy.md). Every boundary this server
 offers on one page, in the order to apply them on confidential data:
-[docs/hardening.md](docs/hardening.md). The switches sit under
-Settings, Administration, Security:
+[docs/hardening.md](docs/hardening.md). The systematic version, assets, attackers and every
+threat with the test that holds its mitigation: [docs/threat-model.md](docs/threat-model.md).
+The switches sit under Settings, Administration, Security:
 
 ![Admin settings of the MCP Connector](docs/screenshots/admin-settings.png)
 

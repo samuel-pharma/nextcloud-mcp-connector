@@ -24,6 +24,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   data, closing with a break-in drill to run before production.
 - A weekly OpenSSF Scorecard run that publishes its result; the README
   carries the badge.
+- docs/threat-model.md: assets, trust boundaries, attackers, every threat
+  with the contract test or switch that holds its mitigation, and the
+  residual risks in plain sentences.
 
 ### Changed
 

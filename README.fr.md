@@ -140,8 +140,10 @@ sortie propre, délibérément. Aucune des deux ne rend l'injection de prompt im
 version longue, avec chaque contre-mesure et le reste honnête, se trouve dans
 [docs/privacy.md](docs/privacy.md). Chaque limite de ce serveur sur une seule page, dans
 l'ordre à appliquer sur des données confidentielles :
-[docs/hardening.fr.md](docs/hardening.fr.md). Les interrupteurs se trouvent sous Paramètres,
-Administration, Sécurité :
+[docs/hardening.fr.md](docs/hardening.fr.md). La version systématique, actifs, attaquants et
+chaque menace avec le test qui tient sa contre-mesure :
+[docs/threat-model.md](docs/threat-model.md) (en anglais). Les interrupteurs se trouvent sous
+Paramètres, Administration, Sécurité :
 
 ![Paramètres d'administration du MCP Connector](docs/screenshots/admin-settings.png)
 
