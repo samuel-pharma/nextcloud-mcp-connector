@@ -31,9 +31,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   family (a file name, a calendar summary, a mail subject and preview, a
   chat message), each held to arrive character for character as data in
   its content field and to leak into no other field of the answer.
-- Every GitHub release from 0.3.1 on carries a `.sig` asset next to its
-  archive: the same sha512 signature the store receives, verifiable
-  against the published app certificate.
+- Every GitHub release from 0.3.1 on carries a `.sig` asset beside the
+  tarball it signs: the same sha512 signature the store receives,
+  verifiable against the published app certificate.
 
 ### Changed
 
